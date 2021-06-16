@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_encode_utils.c                                  :+:      :+:    :+:   */
+/*   ft_minitalk_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpezzull <mpezzull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: assokenay <assokenay@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 01:36:36 by mde-rosa          #+#    #+#             */
-/*   Updated: 2021/06/16 16:11:56 by mpezzull         ###   ########.fr       */
+/*   Updated: 2021/06/16 20:55:41 by assokenay        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "minitalk.h"
 
-static char	*ft_strcpy(char *dest, const char *src)
-{
-	int i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-int		ft_num_len(unsigned int nbr)
+int	ft_num_len(unsigned int nbr)
 {
 	int	len;
 
@@ -48,7 +33,8 @@ char	*ft_uitoa(unsigned int n)
 
 	nbr = n;
 	i = ft_num_len(nbr);
-	if (!(str = (char*)malloc(sizeof(char) * (i + 1))))
+	str = (char *)malloc(sizeof(char) * (i + 1));
+	if (!str)
 		return (NULL);
 	str[i--] = '\0';
 	if (nbr == 0)
@@ -64,14 +50,14 @@ char	*ft_uitoa(unsigned int n)
 	return (str);
 }
 
-size_t	ft_strlen(const char *s)
+char	*ft_strjoin_free(char **s1, char *s2)
 {
-	size_t i;
+	char	*temp;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	temp = ft_strjoin(*s1, s2);
+	free(*s1);
+	*s1 = temp;
+	return (*s1);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -99,71 +85,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	tmp[i + n] = '\0';
 	return (tmp);
-}
-
-char	*ft_strjoin_free(char **s1, char *s2)
-{
-	char	*temp;
-
-	temp = ft_strjoin(*s1, s2);
-	free(*s1);
-	*s1 = temp;
-	return (*s1);
-}
-
-size_t  ft_strlen_ptr(const char *str)
-{
-	size_t	len;
-
-	if (!str)
-		return (0);
-	len = 0;
-	while (str[0] != '\0')
-	{
-		len += 1;
-		str++;
-	}
-	return (len);
-}
-
-char		*ft_strdup(const char *src)
-{
-	char	*copy;
-	int		len;
-
-	len = ft_strlen(src);
-	copy = ((char *)malloc(sizeof(char) * (len + 1)));
-	if (copy == NULL)
-		return (0);
-	ft_strcpy(copy, src);
-	return (copy);
-}
-
-int	ft_atoi(const char	*str)
-{
-	size_t	result;
-	int		digit;
-	int		sign;
-	int		i;
-
-	i = 0;
-	result = 0;
-	sign = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i++] == '-')
-			sign++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		digit = str[i++] - '0';
-		result = (10 * result) + digit;
-	}
-	if (sign % 2 == 1)
-		return ((int)(-result));
-	return ((int)(result));
 }
 
 unsigned int	ft_iterative_power(unsigned int nb, int power)

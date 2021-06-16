@@ -6,14 +6,10 @@
 /*   By: assokenay <assokenay@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 17:47:10 by mpezzull          #+#    #+#             */
-/*   Updated: 2021/06/16 20:38:07 by assokenay        ###   ########.fr       */
+/*   Updated: 2021/06/16 20:57:58 by assokenay        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <signal.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include "minitalk.h"
 
 unsigned int	*ft_str_as_num(char *str)
@@ -78,7 +74,6 @@ void	ft_send_pid(pid_t pid_server)
 		usleep(25);
 	}
 	ft_convert_and_send(pid_client, "01", pid_server);
-
 }
 
 void	ft_convert_and_send(unsigned int nbr, char 	*base, pid_t pid_server)

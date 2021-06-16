@@ -6,14 +6,10 @@
 /*   By: assokenay <assokenay@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 17:38:16 by mpezzull          #+#    #+#             */
-/*   Updated: 2021/06/16 20:35:22 by assokenay        ###   ########.fr       */
+/*   Updated: 2021/06/16 20:58:28 by assokenay        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
-#include <stdlib.h>
 #include "minitalk.h"
 /*
 void	ft_sighandler(int sig)
