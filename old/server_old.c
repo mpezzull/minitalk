@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_old.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpezzull <mpezzull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: assokenay <assokenay@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 17:38:16 by mpezzull          #+#    #+#             */
-/*   Updated: 2021/06/15 17:52:03 by mpezzull         ###   ########.fr       */
+/*   Updated: 2021/06/16 23:43:02 by assokenay        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	ft_sighandler(int sig)
 	}
 	if (temp == 4294967295)
 	{
-		printf("%s\n", str);
+		write(1, &str, ft_strlen_ptr(str));
+		//printf("%s\n", str);
 		free(str);
 		str = NULL;
 		temp = 0;

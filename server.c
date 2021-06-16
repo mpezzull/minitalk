@@ -6,7 +6,7 @@
 /*   By: assokenay <assokenay@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 17:38:16 by mpezzull          #+#    #+#             */
-/*   Updated: 2021/06/16 20:58:28 by assokenay        ###   ########.fr       */
+/*   Updated: 2021/06/16 23:47:12 by assokenay        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	ft_sighandler(int sig)
 			ft_strjoin_free(&str, &buffer);
 			if (!temp)
 			{
+				//write(1, &str, ft_strlen_ptr(str));
 				printf("%s\n", str);
 				fflush(stdout);
 				kill(pid_client, SIGUSR1);
@@ -99,7 +100,8 @@ int	main(void)
 	signal(SIGUSR1, ft_sighandler);
 	signal(SIGUSR2, ft_sighandler);
 	pid = getpid();
-	printf("%u\n", pid);
+	write(1, (ft_uitoa(pid)), ft_num_len(pid));
+	write(1, "\n", 1);
 	while (1)
 	 	;
 }
