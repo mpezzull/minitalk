@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpezzull <mpezzull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: assokenay <assokenay@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 17:38:16 by mpezzull          #+#    #+#             */
-/*   Updated: 2021/06/16 18:57:54 by mpezzull         ###   ########.fr       */
+/*   Updated: 2021/06/16 20:35:22 by assokenay        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,6 @@ void	ft_sighandler(int sig)
 int	main(void)
 {
 	pid_t	pid;
-	char	*addr;
-	char	value;
 
 	signal(SIGUSR1, ft_sighandler);
 	signal(SIGUSR2, ft_sighandler);
