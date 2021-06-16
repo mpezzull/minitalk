@@ -6,7 +6,7 @@
 /*   By: mpezzull <mpezzull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 17:38:16 by mpezzull          #+#    #+#             */
-/*   Updated: 2021/06/16 18:57:54 by mpezzull         ###   ########.fr       */
+/*   Updated: 2021/06/15 17:52:03 by mpezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,84 +15,48 @@
 #include <signal.h>
 #include <stdlib.h>
 #include "minitalk.h"
-/*
-void	ft_sighandler(int sig)
-{
-	static unsigned int	temp;
-	static int			count;
-	static unsigned int	pid_client;
-
-	if (count == 0 && pid_client == 0)
-		count = 17;
-	if (sig == SIGUSR1)
-	{
-		pid_client += ft_iterative_power(2, count--);
-	}
-	if (sig == SIGUSR2)
-	{
-		count--;
-	}
-	if (count == -1)
-	{
-		kill(pid_client, SIGUSR1);
-		pid_client = 0;
-		count = 0;
-	}
-}
-*/
 
 void	ft_sighandler(int sig)
 {
-	static unsigned int	temp;
-	static int			count;
-	static int			count_bit;
-	static unsigned int	pid_client;
-	static char			buffer;
 	static char			*str;
+	static unsigned int	temp;
+	static int			zeros;
+	static char			buffer;
 
 	if (!str)
 		str = ft_strdup("");
-	if (count < 24)
+	if (sig == SIGUSR1)
 	{
-		if (sig == SIGUSR1)
+		if (zeros == 0)
+			temp++;
+		if (zeros == 1)
 		{
-			pid_client += ft_iterative_power(2, 23 - count++);
+			temp *= 10;
+			temp++;
 		}
-		if (sig == SIGUSR2)
-		{
-			count++;
-		}
+		zeros = 0;
 	}
-	else
+	if (sig == SIGUSR2)
 	{
-		if (sig == SIGUSR1)
-		{
-			if (count_bit == 0 || temp >= ft_iterative_power(2, 31))
-				temp += ft_iterative_power(2, 31 - count_bit++);
-			else
-				temp += ft_iterative_power(2, 7 - count_bit++);
-		}
-		if (sig == SIGUSR2)
-		{
-			count_bit++;
-		}
-		if ((count_bit == 8 && temp < 128) || (count_bit == 32))
-		{
+		zeros++;
+		if (zeros == 1)
+			temp--;
+		if (zeros == 2)
+		{	
 			buffer = temp;
 			ft_strjoin_free(&str, &buffer);
-			if (!temp)
-			{
-				printf("%s\n", str);
-				fflush(stdout);
-				kill(pid_client, SIGUSR1);
-				free(str);
-				str = NULL;
-				count = 0;
-				pid_client = 0;
-			}
-			count_bit = 0;
 			temp = 0;
+			zeros = 0;
 		}
+	}
+	if (temp == 4294967295)
+	{
+		printf("%s\n", str);
+		free(str);
+		str = NULL;
+		temp = 0;
+		buffer = 0;
+		zeros = 0;
 	}
 }
 
