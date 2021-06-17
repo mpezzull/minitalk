@@ -1,27 +1,61 @@
-SERVER   = server
-CLIENT   = client
-CC	     = gcc
-FLAGS    = -Wall -Werror -Wextra
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mpezzull <mpezzull@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/06/17 16:25:03 by mpezzull          #+#    #+#              #
+#    Updated: 2021/06/17 16:50:15 by mpezzull         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-all : $(SERVER) $(CLIENT)
+SRCS_S		=	server.c \
+				minitalk_utils.c \
+				minitalk_utils_2.c \
+				minitalk_utils_3.c
 
-$(SERVER) : server.o ft_minitalk_utils.o ft_minitalk_utils_2.o minitalk.h
-	@$(CC) server.o ft_minitalk_utils.o ft_minitalk_utils_2.o -o $@
-	@echo "$@ successfully build"
 
-$(CLIENT) : client.o ft_minitalk_utils.o ft_minitalk_utils_2.o minitalk.h
-	@$(CC) client.o ft_minitalk_utils.o ft_minitalk_utils_2.o -o $@
-	@echo "$@ successfully build"
+SRCS_C		=	client.c \
+				minitalk_utils.c \
+				minitalk_utils_2.c \
+				minitalk_utils_3.c
 
-%.o : %.c
-	@$(CC) $(FLAGS) $< -c -I includes
+NAME_C		=	client
 
-clean :
-	@rm -f *.o
-	@echo ".o files deleted"
+NAME_S		=	server
 
-fclean: clean
-	@rm -f $(SERVER) $(CLIENT)
-	@echo "binaries deleted"
+CFLAGS		=	-Wall -Werror -Wextra
 
-re: fclean all
+CC			=	gcc
+
+OBJCS_C		=	$(SRCS_C:.c=.o)
+
+OBJCS_S		=	$(SRCS_S:.c=.o)
+
+.c.o		:
+				$(CC)  -c $<
+
+all			:	$(NAME_C) $(NAME_S)
+			
+$(NAME_C)		:	$(OBJCS_C)
+				@$(CC) $(CFLAGS) -o $(NAME_C) $(OBJCS_C)
+			 	@echo "$@ successfully build"
+
+$(NAME_S)		:	$(OBJCS_S)
+				@$(CC) $(CFLAGS) -o $(NAME_S) $(OBJCS_S)
+			 	@echo "$@ successfully build"
+
+clean		:
+				@rm -f $(OBJCS_C)
+				@rm -f $(OBJCS_S)
+			 	@echo ".o files deleted"
+
+fclean		:	clean
+				@rm -f $(NAME_C)
+				@rm -f $(NAME_S)
+			 	@echo "binaries deleted"
+
+re			:	fclean all
+
+.PHONY		:	all clean fclean re
