@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpezzull <mpezzull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-rosa <mde-rosa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 17:47:10 by mpezzull          #+#    #+#             */
-/*   Updated: 2021/06/17 18:47:03 by mpezzull         ###   ########.fr       */
+/*   Updated: 2021/06/18 15:05:58 by mde-rosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,21 @@ int	main(int argc, char **argv)
 	signal(SIGUSR1, ft_signal_received);
 	str = argv[2];
 	if (argc != 3)
+	{
+		write(1, "Please use: ''./client 'pid_server' 'string_to_pass''\n", 54);
 		return (0);
+	}
+	if ((ft_strlen(argv[1]) < 3) || (ft_strlen(argv[1]) > 5))
+	{
+		write(1, "100<= pid_server >=99998 './server' to know right pid\n", 54);
+		return (0);
+	}	
 	pid_server = ft_atoi(argv[1]);
+	if (pid_server <= 0)
+	{
+		write(1, "100<= pid_server >=99998 './server' to know right pid\n", 54);
+		return (0);
+	}	
 	ft_encode(str, pid_server);
 	while (1)
 	 	;
