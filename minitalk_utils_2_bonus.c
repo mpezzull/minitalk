@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_minitalk_utils_2.c                              :+:      :+:    :+:   */
+/*   minitalk_utils_2_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpezzull <mpezzull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/16 20:49:08 by assokenay         #+#    #+#             */
-/*   Updated: 2021/06/17 16:38:42 by mpezzull         ###   ########.fr       */
+/*   Created: 2021/06/16 20:49:08 by mpezzull          #+#    #+#             */
+/*   Updated: 2021/06/18 16:45:44 by mpezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {

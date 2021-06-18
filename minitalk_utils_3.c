@@ -6,7 +6,7 @@
 /*   By: mpezzull <mpezzull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 16:50:32 by mpezzull          #+#    #+#             */
-/*   Updated: 2021/06/17 18:35:15 by mpezzull         ###   ########.fr       */
+/*   Updated: 2021/06/18 16:41:08 by mpezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,6 @@ void	ft_signal_received(int sig)
 	}
 }
 
-void	ft_write_message(char	*str)
-{
-	write(1, &"Message from client(pid): ", 26);
-	write(1, ft_uitoa(ft_pid_client(0)), ft_num_len(ft_pid_client(0)));
-	write(1, &"\n", 1);
-	write(1, str, ft_strlen_ptr(str));
-	write(1, &"\n", 1);
-}
-
 unsigned int	ft_pid_client(int sig)
 {
 	static int			count_header;
@@ -71,4 +62,32 @@ unsigned int	ft_pid_client(int sig)
 	else if (count_header == 24)
 		return (pid_client);
 	return (0);
+}
+
+void	ft_check_argv(char	*str)
+{
+	if (!ft_str_is_numeric(str))
+	{
+		write(1, "pid_server must be a number\n", 28);
+		exit(1);
+	}
+	if (ft_atoi(str) < 100 || ft_atoi(str) > 99998)
+	{
+		write(1, "pid must be in range [100,99998]\n", 33);
+		exit(1);
+	}	
+}
+
+int	ft_str_is_numeric(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
 }

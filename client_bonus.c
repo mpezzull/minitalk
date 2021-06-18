@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-rosa <mde-rosa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpezzull <mpezzull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 17:47:10 by mpezzull          #+#    #+#             */
-/*   Updated: 2021/06/18 15:05:58 by mde-rosa         ###   ########.fr       */
+/*   Updated: 2021/06/18 16:45:21 by mpezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 int	*ft_send_signals(unsigned int *str_as_num, pid_t pid_server)
 {
@@ -103,18 +103,9 @@ int	main(int argc, char **argv)
 		write(1, "Please use: ''./client 'pid_server' 'string_to_pass''\n", 54);
 		return (0);
 	}
-	if ((ft_strlen(argv[1]) < 3) || (ft_strlen(argv[1]) > 5))
-	{
-		write(1, "100<= pid_server >=99998 './server' to know right pid\n", 54);
-		return (0);
-	}	
+	ft_check_argv(argv[1]);
 	pid_server = ft_atoi(argv[1]);
-	if (pid_server <= 0)
-	{
-		write(1, "100<= pid_server >=99998 './server' to know right pid\n", 54);
-		return (0);
-	}	
 	ft_encode(str, pid_server);
-	while (1)
-	 	;
+	sleep(10);
+	write(1, "No response from the server\n", 28);
 }

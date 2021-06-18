@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_utils.c                                   :+:      :+:    :+:   */
+/*   minitalk_utils_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpezzull <mpezzull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/15 01:36:36 by mde-rosa          #+#    #+#             */
-/*   Updated: 2021/06/17 18:36:20 by mpezzull         ###   ########.fr       */
+/*   Created: 2021/06/15 01:36:36 by mpezzull          #+#    #+#             */
+/*   Updated: 2021/06/18 16:46:08 by mpezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 int	ft_num_len(unsigned int nbr)
 {

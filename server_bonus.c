@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpezzull <mpezzull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 17:38:16 by mpezzull          #+#    #+#             */
-/*   Updated: 2021/06/17 18:35:22 by mpezzull         ###   ########.fr       */
+/*   Updated: 2021/06/18 16:46:22 by mpezzull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void	ft_send(char	**str)
 {
@@ -19,6 +19,15 @@ void	ft_send(char	**str)
 	free(*str);
 	*str = NULL;
 	ft_pid_client(-1);
+}
+
+void	ft_write_message(char	*str)
+{
+	write(1, &"Message from client(pid): ", 26);
+	write(1, ft_uitoa(ft_pid_client(0)), ft_num_len(ft_pid_client(0)));
+	write(1, &"\n", 1);
+	write(1, str, ft_strlen_ptr(str));
+	write(1, &"\n", 1);
 }
 
 void	ft_send_and_clean(unsigned int *temp, char **str, int *count_bit)
