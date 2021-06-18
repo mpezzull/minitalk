@@ -6,7 +6,7 @@
 #    By: mde-rosa <mde-rosa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 16:25:03 by mpezzull          #+#    #+#              #
-#    Updated: 2021/06/18 15:18:50 by mde-rosa         ###   ########.fr        #
+#    Updated: 2021/06/18 15:20:25 by mde-rosa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,4 +91,4 @@ fclean		:	clean
 
 re			:	fclean all
 
-.PHONY		:	all clean fclean re
+.PHONY		:	all bonus clean fclean re
